@@ -8,6 +8,6 @@ def _write_thing_to_file file, thing
   file.open('/tmp/users/homeboy/thing.txt', 'w') do |f|
     # ... complicated computation
 
-    f.write result
+    f.write 'result'
   end
 end
