@@ -4,14 +4,14 @@ require 'minitest/autorun'
 require '../mocks/file_mocker'
 require '../../code/mockable'
 
-describe "Mocking File.open" do
+describe 'Mocking File.open' do
   before do
     @mock = file_mocker('/tmp/users/homeboy/thing.txt', 'w') do |fmock|
       fmock.expect(:write, nil, ['result'])
     end
   end
-  it "should have called :open" do
+  it 'should have called :open' do
     _write_thing_to_file @mock, 'thing'
-  @mock.verify
+    @mock.verify
   end
 end
