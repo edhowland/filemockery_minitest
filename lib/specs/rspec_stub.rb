@@ -6,7 +6,7 @@ require '../../code/unmockable'
 RSpec.describe File do
   context 'with stub' do
     before(:each) do
-        allow(File).to receive(:open).and_return(true)
+      allow(File).to receive(:open).and_return(true)
     end
     it 'should stub' do
       write_thing_to_file 'thing'

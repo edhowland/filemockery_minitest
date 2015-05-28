@@ -1,9 +1,10 @@
 # unmockable.rb  - Code too hard to mock
 
-def write_thing_to_file thing
+def write_thing_to_file(thing)
   File.open('/tmp/users/homeboy/thing.txt', 'w') do |f|
     # ... complicated computation
 
-    f.puts 'result'
+    result = thing
+    f.puts result
   end
 end

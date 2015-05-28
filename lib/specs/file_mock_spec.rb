@@ -7,7 +7,7 @@ require '../../code/mockable'
 describe 'Mocking File.open' do
   before do
     @mock = file_mocker('/tmp/users/homeboy/thing.txt', 'w') do |fmock|
-      fmock.expect(:write, nil, ['result'])
+      fmock.expect(:write, nil, ['thing'])
     end
   end
   it 'should have called :open' do
