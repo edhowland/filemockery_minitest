@@ -82,6 +82,12 @@ describe 'Mocking File.open' do
 end
 ```
 
+There are 2 mocks going on here: @mock and fmock within the block for file_mocker(). @mock is the mock double for File. fmock is the double for the 'f' 
+parameter to the block to the file.open() in out code under test. The method file_mocker takes a file, a mode ('w' or 'r') and 
+an optional block. The @mock.verify checks that all the arguements to open are as expevted. The block takes another parameter which we
+have named fmock here. This is an internal mock that gests substituted for the file
+object passed to the optional block to File.open
+
 
 
 # Stubs
