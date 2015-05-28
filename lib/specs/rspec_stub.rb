@@ -1,23 +1,19 @@
 
+require 'fileutils'
 require 'rspec'
-
-
-#allow(book).to receive(:title) { "The RSpec Book" }
-#allow(book).to receive(:title).and_return("The RSpec Book")
-#allow(book).to receive_messages(
-    #:title => "The RSpec Book",
-    #:sub
-
-#allow(MyMod::Utils).to receive(:find_x).and_return({something: 'testing'})
-
+require '../../code/unmockable'
 
 RSpec.describe File do
   context 'with stub' do
-    it 'should stub' do
+    before(:each) do
+      FileUtils.rm_f './stub'
         allow(File).to receive(:open).and_return(true)
+    end
+    it 'should stub' do
       File.open('stub', 'w') do |f|
         f.puts 'hi'
       end
+      expect(File).not_to exist('stub')
     end
 
   context 'with no stub' do
