@@ -9,10 +9,8 @@ RSpec.describe File do
         allow(File).to receive(:open).and_return(true)
     end
     it 'should stub' do
-      File.open('stub', 'w') do |f|
-        f.puts 'hi'
-      end
-      expect(File).not_to exist('stub')
+      write_thing_to_file 'thing'
+      expect(File).not_to exist('/tmp/users/homeboy/thing.txt')
     end
   end
 
