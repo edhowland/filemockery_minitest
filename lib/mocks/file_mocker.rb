@@ -7,7 +7,7 @@ require 'minitest/mock'
 # file contents
 def file_mocker(name, mode, &blk)
   fmock = MiniTest::Mock.new
-  blk.call((fmock))
+  blk.call(fmock) if block_given?
   mock = MiniTest::Mock.new
   mock.expect(:open, true) do |a1, a2, &block|
     block.call(fmock)
