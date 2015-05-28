@@ -15,11 +15,13 @@ Assume at the end of long chain of calls, you find this:
 ```
 And then, you find the method:
 ```
-  def write_thing_to_file thing
-    File.open('/tmp/users/homeboy/thing.txt', 'w') do |f|
-      # ... complicated computation
-      f.write result
-    end
-  end
-```
 
+def write_thing_to_file(thing)
+  File.open('/tmp/users/homeboy/thing.txt', 'w') do |f|
+    # ... complicated computation
+
+    result = thing
+    f.puts result
+  end
+end
+```
