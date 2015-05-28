@@ -87,7 +87,44 @@ parameter to the block to the file.open() in out code under test. The method fil
 an optional block. The @mock.verify checks that all the arguements to open are as expevted. The block takes another parameter which we
 have named fmock here. This is an internal mock that gests substituted for the file
 object passed to the optional block to File.open
-
-
+Inside file_mocker, fmock is verified to see if the expected call to f.write was called
+called.
 
 # Stubs
+
+But what if you want to call the original code above and you just want the method
+write_thing_to_file to do nothing but return a valid result? Stubs to the rescue!
+Stubs are a test double that just supply a canned response. But here it gets tricky with MiniTest::Mock. There seems to be an open issue with
+setting a stub on File.open that has a block. The block gets called with a nill 
+parameter. See:https://github.com/seattlerb/minitest/issues/414
+
+
+So instead, I solved it with RSpec (rspec.info).
+Here is the rspec file:
+
+```
+require 'fileutils'
+require 'rspec'
+require '../../code/unmockable'
+
+RSpec.describe File do
+  context 'with stub' do
+    before(:each) do
+      allow(File).to receive(:open).and_return(true)
+    end
+    it 'should stub' do
+      write_thing_to_file 'thing'
+      expect(File).not_to exist('/tmp/users/homeboy/thing.txt')
+    end
+  end
+
+  context 'with no stub' do
+    it 'should write file' do
+      File.open('nostub', 'w') do |f|
+        f.puts 'hi'
+      end
+      expect(File).to exist('nostub')
+    end
+  end
+end
+```
