@@ -128,3 +128,7 @@ RSpec.describe File do
   end
 end
 ```
+
+In the first context, in the before stanza, we allow File to receive :open and
+return true. Now our example will not actually do anything that ever writes to a file, as long as we remain in this context. In the second context,
+we actaully expect to write a file : nostub. And it succeeds
