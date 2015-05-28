@@ -4,6 +4,6 @@ def write_thing_to_file thing
   File.open('/tmp/users/homeboy/thing.txt', 'w') do |f|
     # ... complicated computation
 
-    f.write 'result'
+    f.puts 'result'
   end
 end
