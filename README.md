@@ -132,3 +132,24 @@ end
 In the first context, in the before stanza, we allow File to receive :open and
 return true. Now our example will not actually do anything that ever writes to a file, as long as we remain in this context. In the second context,
 we actaully expect to write a file : nostub. And it succeeds
+
+# executing a process and return array of results
+
+There a useful function in other languages that lets 
+you call a command and captures all output such as stderr, stdout and the exit status in an array. Like this:
+
+`
+  captured = execute('date')
+  sputs captured[0] # => 'Thur May 13, 2015'
+  puts captured[1] # => ''
+  puts captured[2] #=> 0
+`#
+
+In this example, we call the 'date' command. Its stdout is captured in 
+
+The stderr is captured in captured[1] but is empty.
+The exit status from the command is captured[2].
+
+This is based the Ruby Standard Library: Open3::popen3 class method. If the command aborts, the exception is captured and the message is passed in the 
+second array element: captured[1]captured[0]
+
