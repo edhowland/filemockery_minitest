@@ -17,10 +17,3 @@ def execute(command)
   end
   [outs, errs, status]
 end
-
-puts "starting #{ARGV.first} command"
-output = execute(ARGV.first)
-puts 'after'
-puts "stdout: |#{output[0]}|"
-puts "stderr: |#{output[1]}|"
-puts "exit: |#{output[2]}|"
